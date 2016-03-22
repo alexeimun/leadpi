@@ -1,0 +1,106 @@
+*
+{
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
+}
+
+body
+{
+    background: #e9e9e9;
+}
+
+.places
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.first-position
+{
+    background: #05cd72;
+}
+
+.second-position
+{
+    background: deepskyblue;
+}
+
+.third-position
+{
+    background: #ff5037;
+}
+
+.other-position
+{
+    background: #afb1ab;
+}
+
+.place
+{
+    background: grey;
+    width: 70%;
+    height: 100px;
+    margin: 10px auto auto auto;
+    padding: 2px;
+}
+
+.pheader
+{
+    padding: 5px;
+    color: white;
+    text-align: center;
+    height: 100%;
+    background: black;
+    font-weight: bold;
+}
+
+.pbody
+{
+    height: 100%;
+    padding: 10px;
+}
+
+.robot-name
+{
+    font-weight: bold;
+    font-size: 22pt;
+}
+
+.participant-name
+{
+    font-weight: bold;
+    font-size: 18pt;
+    color: #1a0031;
+}
+
+.active-place
+{
+    box-shadow: 1px 0px 1px 10px #9a3197;
+}
+
+.controllers span
+{
+    margin: 5px;
+    font-size: 15pt;
+    cursor: pointer;
+}
+
+.controllers .play:hover
+{
+    color: greenyellow;
+}
+
+.controllers .pause:hover
+{
+    color: #0054dd;
+}
+
+.controllers .stop:hover
+{
+    color: crimson;
+}
+.isplay
+{
+    color: #ffffff !important;
+    font-size: 17pt !important;
+}

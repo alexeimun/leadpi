@@ -1,0 +1,129 @@
+<div ng-controller="MainCtrl" id="initial">
+    <place ng-repeat="participant in participants | orderBy:orderTime" participant="participant"
+           index="$index"></place>
+</div>
+
+<script>
+    var tmp = null, realTime = false, cron = {milli: 0, sec: 0}, play = false, pid = 0;
+    var url = 'http://192.168.1.5/reader.php';
+    var start = true, finish = false;
+    //    url = "http://localhost/dist/backend/slave.php";
+
+    function Refresh()
+    {
+        setTimeout(function ()
+        {
+            $.ajax({
+                url: url,
+                type: 'get',
+//                data: {'record': 'record'},
+                success: function (resp)
+                {
+                    if (start)
+                    {
+                        if (resp == 0)
+                        {
+                            start = false;
+                            play = true;
+                            Timer();
+                            setTimeout(function ()
+                            {
+                                finish = true;
+                            }, 1000);
+                        }
+                    }
+                    else if (finish)
+                    {
+                        if (resp == 1)
+                        {
+                            start = finish = realTime = play = false;
+                            $(tmp).find('.play').removeClass('isplay');
+
+                            $('.active-place .timer').animate({'fontSize': '30pt'}, 600,
+                                    function ()
+                                    {
+                                        $(this).animate({'fontSize': '14pt'}, 600,
+                                                function ()
+                                                {
+                                                    $(this).animate({'fontSize': '30pt'}, 600,
+                                                            function () {$(this).animate({'fontSize': '14pt'}, 600)})
+                                                })
+                                    });
+                        }
+                    }
+                }
+            });
+            if (realTime)
+            {
+                Refresh();
+            }
+        }, 10);
+    }
+
+
+    $('body').on('click', '.active-place .play', function ()
+    {
+        $(this).toggleClass('isplay');
+        start = realTime = true;
+        Refresh();
+    });
+
+    $('body').on('click', '.active-place .pause', function ()
+    {
+        realTime = play = false;
+    });
+
+    $('body').on('click', '.active-place .stop', function ()
+    {
+        $(this).prev().prev().removeClass('isplay');
+        realTime = play = finish = false;
+        start = true;
+        cron = {milli: 0, sec: 0};
+        angular.element($("#initial")).scope().$apply(function ($scope)
+        {
+            $scope.participants[pid].time = '0:0';
+        });
+    });
+    $('body').on('click', '.place', function ()
+    {
+        if (tmp != this)
+        {
+            $(tmp).find('.play').removeClass('isplay');
+            pid = $(this).data('id');
+            cron = {milli: 0, sec: 0};
+            $(this).find('.controllers').show(300);
+            realTime = play = false;
+        }
+
+        $(this).addClass('active-place');
+        if (tmp != null && tmp != this)
+        {
+            $(tmp).removeClass('active-place');
+            $(tmp).find('.controllers').hide(300);
+        }
+        tmp = this;
+    });
+
+    function Timer()
+    {
+        setTimeout(function ()
+        {
+            cron.milli += 1;
+
+            if (cron.milli == 100)
+            {
+                cron.sec += 1;
+                cron.milli = 0;
+            }
+            if (play)
+            {
+                angular.element($("#initial")).scope().$apply(function ($scope)
+                {
+                    $scope.participants[pid].time = cron.sec + ':' + cron.milli;
+                });
+                Timer();
+            }
+        }, 10);
+    }
+</script>
+
