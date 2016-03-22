@@ -1,4 +1,4 @@
-# leaderboard
+# Raspberry Pi leaderboard
 > Rasperry Pi leaderboard is a web project made for line follower robot competition.
 
 ![web app](https://c1.staticflickr.com/2/1525/25988528055_eebb2bc4b9.jpg)
