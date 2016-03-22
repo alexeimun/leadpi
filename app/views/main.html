@@ -5,9 +5,8 @@
 
 <script>
     var tmp = null, realTime = false, cron = {milli: 0, sec: 0}, play = false, pid = 0;
-    var url = 'http://192.168.1.5/reader.php';
     var start = true, finish = false;
-    //    url = "http://localhost/dist/backend/slave.php";
+    var url = 'http://192.168.1.5/leaderboard/backend/reader.php';
 
     function Refresh()
     {
@@ -16,7 +15,6 @@
             $.ajax({
                 url: url,
                 type: 'get',
-//                data: {'record': 'record'},
                 success: function (resp)
                 {
                     if (start)

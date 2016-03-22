@@ -17,7 +17,7 @@ angular.module('leaderboardApp')
         };
         $http({
             method: 'get',
-            url: 'http://localhost/dist/backend/slave.php?proof=participants'
+            url: 'http://localhost/dist/backend/participants.php?participants=participants'
         }).then(function (resp)
         {
             $scope.participants = resp.data.participants;
