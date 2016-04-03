@@ -30,6 +30,26 @@ body
     background: #ff5037;
 }
 
+.first-trophy
+{
+    color: gold;
+}
+
+.second-trophy
+{
+    color: #2d343a;
+}
+
+.third-trophy
+{
+    color: white;
+}
+
+.other-trophy
+{
+    color: white;
+}
+
 .other-position
 {
     background: #afb1ab;
@@ -38,8 +58,8 @@ body
 .place
 {
     background: grey;
-    width: 70%;
-    height: 100px;
+    width: 90%;
+    height: 110px;
     margin: 10px auto auto auto;
     padding: 2px;
 }
@@ -75,7 +95,7 @@ body
 
 .active-place
 {
-    box-shadow: 1px 0px 1px 10px #9a3197;
+    box-shadow: 1px 0px 1px 10px #037c2e;
 }
 
 .controllers span
@@ -99,8 +119,14 @@ body
 {
     color: crimson;
 }
+
 .isplay
 {
     color: #ffffff !important;
     font-size: 17pt !important;
+}
+
+.timer
+{
+    font-size: 25pt;
 }

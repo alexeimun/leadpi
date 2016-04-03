@@ -9,21 +9,27 @@
  */
 angular.module('leaderboardApp')
 
-    .controller('MainCtrl', function ($scope, $http)
+    .factory('ftrParticipants', function ($http)
     {
-        $scope.orderTime = function (participant)
-        {
-            return participant.time === '-:-' ? 99999 : Number(participant.time.replace(':', '.'));
-        };
-        $http({
-            method: 'get',
-            url: 'http://localhost/dist/backend/participants.php?participants=participants'
-        }).then(function (resp)
-        {
-            $scope.participants = resp.data.participants;
+        return {
+            'getParticipants': function ()
+            {
+                return $http.get('http://raspberrypi.local/backend/participants.php');
+            }
+        }
+    })
+    .controller('MainCtrl', function ($scope, ftrParticipants)
+    {
+        angular.extend($scope, {
+            participants: [],
+            orderTime: function (participant)
+            {
+                return participant.time === '-:-' ? 99999 : Number(participant.time.replace(':', '.'));
+            }
+        });
 
-        }, function (resp)
+        ftrParticipants.getParticipants().success(function (resp)
         {
-            console.log(resp);
+            $scope.participants = resp.participants;
         });
     });

@@ -15,6 +15,6 @@ describe('Directive: place', function () {
   it('should make hidden element visible', inject(function ($compile) {
     element = angular.element('<place></place>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the place directive');
+    expect(element.text()).toBe('');
   }));
 });

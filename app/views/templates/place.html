@@ -1,18 +1,21 @@
 <div class="place row" data-id="{{ participant.id }}">
     <div class="pheader col-lg-2">
-        <span style="font-size: 25pt"> {{ index+1}}</span>
+        <span style="font-size: 26pt"> {{ index+1}}</span>
         <br>
-        <span style="font-size: 14pt;" class="btime"> <span class="glyphicon glyphicon-time"></span> <span class="timer">{{participant.time }}</span></span>
+        <span style="font-size: 14pt;" class="btime"> <span class="glyphicon glyphicon-time"></span> <span
+                class="timer">{{participant.time }}</span></span>
     </div>
     <div class="pbody col-lg-10"
          ng-class="{'first-position': index==0, 'second-position': index==1,'third-position': index==2,'other-position': index >2}">
-        <span class="robot-name" style="color: white;"> <i class="glyphicon glyphicon-bishop"></i> {{participant.robot }}</span><br>
+        <span class="robot-name" style="color: white;"> <i class="fa fa-trophy"
+                                                           ng-if="index < 3"
+                                                           ng-class="{'first-trophy': index==0, 'second-trophy': index==1,'third-trophy': index==2}"></i> {{participant.robot }}</span><br>
         <span class="participant-name"> <span class="glyphicon glyphicon-user"></span> {{participant.name }}</span>
         <!--Controllers-->
         <div class="col-lg-push-9 col-lg-3 controllers" style="display: none">
-            <span class="glyphicon  glyphicon-play play"></span>
+            <span class="glyphicon  glyphicon-play play" title="Empezar a escuchar"></span>
             <span class="glyphicon  glyphicon-pause pause"></span>
-            <span class="glyphicon  glyphicon-stop stop"></span>
+            <span class="glyphicon  glyphicon-stop stop" data-title="" title="Parar"></span>
         </div>
     </div>
 </div>

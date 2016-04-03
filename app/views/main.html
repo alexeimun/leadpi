@@ -4,9 +4,8 @@
 </div>
 
 <script>
-    var tmp = null, realTime = false, cron = {milli: 0, sec: 0}, play = false, pid = 0;
-    var start = true, finish = false;
-    var url = 'http://192.168.1.5/leaderboard/backend/reader.php';
+    var tmp = null, realTime = false, cron = {milli: 0, sec: 0}, play = false, pid = 0, start = true, finish = false;
+    var url = 'http://raspberrypi.local/backend/reader.php';
 
     function Refresh()
     {
@@ -17,6 +16,7 @@
                 type: 'get',
                 success: function (resp)
                 {
+//                    console.log(resp);
                     if (start)
                     {
                         if (resp == 0)
@@ -27,7 +27,7 @@
                             setTimeout(function ()
                             {
                                 finish = true;
-                            }, 1000);
+                            }, 3000);
                         }
                     }
                     else if (finish)
@@ -40,11 +40,11 @@
                             $('.active-place .timer').animate({'fontSize': '30pt'}, 600,
                                     function ()
                                     {
-                                        $(this).animate({'fontSize': '14pt'}, 600,
+                                        $(this).animate({'fontSize': '25pt'}, 600,
                                                 function ()
                                                 {
                                                     $(this).animate({'fontSize': '30pt'}, 600,
-                                                            function () {$(this).animate({'fontSize': '14pt'}, 600)})
+                                                            function () {$(this).animate({'fontSize': '25pt'}, 600)})
                                                 })
                                     });
                         }
